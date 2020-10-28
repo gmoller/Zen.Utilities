@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Zen.Utilities;
 
 namespace Zen.UtilitiesTests
 {
@@ -10,9 +11,12 @@ namespace Zen.UtilitiesTests
         }
 
         [Test]
-        public void Test1()
+        public void Test_CallContext()
         {
-            Assert.Pass();
+            CallContext<string>.SetData("GlobalContext", "Hi!");
+            var context = CallContext<string>.GetData("GlobalContext");
+
+            Assert.AreEqual("Hi!", context);
         }
     }
 }

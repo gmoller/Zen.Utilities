@@ -20,6 +20,13 @@ namespace Zen.Utilities.ExtensionMethods
             return returnString;
         }
 
+        public static string RemoveFirstAndLastCharacters(this string str)
+        {
+            var returnString = str.Substring(1, str.Length - 2);
+
+            return returnString;
+        }
+
         public static IEnumerable<string> SplitToLines(this string input)
         {
             if (input == null)

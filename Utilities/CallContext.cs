@@ -7,7 +7,7 @@ namespace Zen.Utilities
     /// Provides a way to set contextual data that flows with the call and
     /// async context of a test or invocation.
     /// </summary>
-    public class CallContext<T>
+    public static class CallContext<T>
     {
         private static readonly ConcurrentDictionary<string, AsyncLocal<T>> State = new ConcurrentDictionary<string, AsyncLocal<T>>();
 
