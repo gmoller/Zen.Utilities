@@ -2,6 +2,8 @@
 
 An amalgamation of various helper routines for use in my software.
 
+Nuget package download: https://www.nuget.org/packages/Zen.Utilities/0.1.1
+
 # Example
 To use:
 
