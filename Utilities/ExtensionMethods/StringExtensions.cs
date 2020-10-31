@@ -12,7 +12,7 @@ namespace Zen.Utilities.ExtensionMethods
             return hasValue;
         }
 
-        public static string GetToLeftOfCharacter(this string str, char c)
+        public static string GetTextToLeftOfCharacter(this string str, char c)
         {
             var index = str.IndexOf(c);
             var returnString = index > 0 ? str.Substring(0, index) : string.Empty;
@@ -20,7 +20,7 @@ namespace Zen.Utilities.ExtensionMethods
             return returnString;
         }
 
-        public static string GetToRightOfCharacter(this string str, char c)
+        public static string GetTextToRightOfCharacter(this string str, char c)
         {
             var index = str.IndexOf(c);
             var returnString = index > 0 ? str.Substring(index + 1) : string.Empty;

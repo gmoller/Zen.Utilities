@@ -47,9 +47,18 @@ namespace Zen.Utilities
         {
             var instantiatedObject = CreateInstance(assemblyQualifiedName);
             var methodInfo = GetMethod(assemblyQualifiedName, methodName);
-            var func = (Func<string>)Delegate.CreateDelegate(typeof(Func<string>), instantiatedObject, methodInfo);
+            if (methodInfo.IsStatic)
+            {
+                var func = (Func<string>)Delegate.CreateDelegate(typeof(Func<string>), methodInfo);
 
-            return func;
+                return func;
+            }
+            else
+            {
+                var func = (Func<string>)Delegate.CreateDelegate(typeof(Func<string>), instantiatedObject, methodInfo);
+
+                return func;
+            }
         }
     }
 }
