@@ -36,26 +36,35 @@ namespace Zen.Utilities
 
         public static Action<object, EventArgs> CreateActionDelegate(string assemblyQualifiedName, string methodName)
         {
-            var instantiatedObject = CreateInstance(assemblyQualifiedName);
-            var methodInfo = GetMethod(assemblyQualifiedName, methodName);
-            var action = (Action<object, EventArgs>)Delegate.CreateDelegate(typeof(Action<object, EventArgs>), instantiatedObject, methodInfo);
-
-            return action;
-        }
-
-        public static Func<string> CreateFuncDelegate(string assemblyQualifiedName, string methodName)
-        {
-            var instantiatedObject = CreateInstance(assemblyQualifiedName);
             var methodInfo = GetMethod(assemblyQualifiedName, methodName);
             if (methodInfo.IsStatic)
             {
-                var func = (Func<string>)Delegate.CreateDelegate(typeof(Func<string>), methodInfo);
+                var action = (Action<object, EventArgs>)Delegate.CreateDelegate(typeof(Action<object, EventArgs>), methodInfo);
+
+                return action;
+            }
+            else
+            {
+                var instantiatedObject = CreateInstance(assemblyQualifiedName);
+                var action = (Action<object, EventArgs>)Delegate.CreateDelegate(typeof(Action<object, EventArgs>), instantiatedObject, methodInfo);
+
+                return action;
+            }
+        }
+
+        public static Func<object, string> CreateFuncDelegate(string assemblyQualifiedName, string methodName)
+        {
+            var methodInfo = GetMethod(assemblyQualifiedName, methodName);
+            if (methodInfo.IsStatic)
+            {
+                var func = (Func<object, string>)Delegate.CreateDelegate(typeof(Func<object, string>), methodInfo);
 
                 return func;
             }
             else
             {
-                var func = (Func<string>)Delegate.CreateDelegate(typeof(Func<string>), instantiatedObject, methodInfo);
+                var instantiatedObject = CreateInstance(assemblyQualifiedName);
+                var func = (Func<object, string>)Delegate.CreateDelegate(typeof(Func<object, string>), instantiatedObject, methodInfo);
 
                 return func;
             }

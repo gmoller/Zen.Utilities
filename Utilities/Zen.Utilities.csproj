@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.1.4</Version>
+    <Version>0.1.6</Version>
     <Authors>Greg Moller</Authors>
     <Company>Zen</Company>
+    <Description>An amalgamation of various helper routines for use in my software.</Description>
   </PropertyGroup>
 
 </Project>
