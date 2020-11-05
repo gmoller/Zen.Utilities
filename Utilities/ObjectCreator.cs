@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace Zen.Utilities
@@ -68,6 +69,25 @@ namespace Zen.Utilities
 
                 return func;
             }
+        }
+
+        public static (string callingTypeFullName, string callingAssemblyFullName) GetCallerType(int level)
+        {
+            var stackTrace = new StackTrace();
+            var stackFrame = stackTrace.GetFrame(level + 1);
+            if (stackFrame == null) throw new Exception();
+
+            var callingMethod = stackFrame.GetMethod();
+            if (callingMethod == null) throw new Exception();
+
+            var callingType = callingMethod.ReflectedType;
+            if (callingType == null) throw new Exception();
+
+            var callingNamespace = callingType.Namespace;
+            var callingTypeFullName = $"{callingNamespace}.{callingType.Name}";
+            var callingAssemblyFullName = callingType.Assembly.FullName;
+
+            return (callingTypeFullName, callingAssemblyFullName);
         }
     }
 }
