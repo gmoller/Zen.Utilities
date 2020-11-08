@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Zen.Utilities</AssemblyName>
     <RootNamespace>Zen.Utilities</RootNamespace>
-    <Version>0.1.8</Version>
+    <Version>0.1.9</Version>
     <Authors>Greg Moller</Authors>
     <Company>Zen</Company>
     <Description>An amalgamation of various helper routines for use in my software.</Description>
