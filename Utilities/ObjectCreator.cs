@@ -71,7 +71,7 @@ namespace Zen.Utilities
             }
         }
 
-        public static (string callingTypeFullName, string callingAssemblyFullName) GetCallerType(int level)
+        public static CallingType GetCallerType(int level)
         {
             var stackTrace = new StackTrace();
             var stackFrame = stackTrace.GetFrame(level + 1);
@@ -87,7 +87,9 @@ namespace Zen.Utilities
             var callingTypeFullName = $"{callingNamespace}.{callingType.Name}";
             var callingAssemblyFullName = callingType.Assembly.FullName;
 
-            return (callingTypeFullName, callingAssemblyFullName);
+            var returnCallingType = new CallingType {TypeFullName = callingTypeFullName, AssemblyFullName = callingAssemblyFullName };
+
+            return returnCallingType;
         }
     }
 }
