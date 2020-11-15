@@ -43,6 +43,26 @@ namespace Zen.Utilities.ExtensionMethods
             return returnString;
         }
 
+        public static bool StartsAndEndsWith(this string str, char start, char end)
+        {
+            if (str.StartsWith(start) && str.EndsWith(end))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool StartsAndEndsWith(this string str, char character)
+        {
+            if (str.StartsWith(character) && str.EndsWith(character))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static IEnumerable<string> SplitToLines(this string input)
         {
             if (input == null)
