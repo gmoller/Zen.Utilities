@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Zen.Utilities.ExtensionMethods;
 
 namespace Zen.Utilities
 {
@@ -23,6 +24,15 @@ namespace Zen.Utilities
 
         public static PointI Empty => new PointI(0, 0);
         public static PointI Zero => new PointI(0, 0);
+
+        public static PointI Lerp(PointI start, PointI end, float t)
+        {
+            var x = (1 - t) * start.X + t * end.X;
+            var y = (1 - t) * start.Y + t * end.Y;
+            var p = new PointI(x.Round(), y.Round());
+
+            return p;
+        }
 
         #region Overrides and Overloads
 
