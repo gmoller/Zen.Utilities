@@ -51,5 +51,25 @@ namespace Zen.UtilitiesTests
             var result7 = testString7.StartsAndEndsWith('\'');
             Assert.IsFalse(result7);
         }
+
+        [Test]
+        public void KeepOnlyBeforeCharacter_functions_correctly()
+        {
+            var testString1 = "[Hello]";
+            var result1 = testString1.KeepOnlyBeforeCharacter(']');
+            Assert.AreEqual("[Hello", result1);
+
+            var testString2 = "Hello]";
+            var result2 = testString2.KeepOnlyBeforeCharacter(']');
+            Assert.AreEqual("Hello", result2);
+
+            var testString3 = "Hello";
+            var result3 = testString3.KeepOnlyBeforeCharacter(']');
+            Assert.AreEqual("Hello", result3);
+
+            var testString4 = "Hello]123]";
+            var result4 = testString4.KeepOnlyBeforeCharacter(']');
+            Assert.AreEqual("Hello", result4);
+        }
     }
 }

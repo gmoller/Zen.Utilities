@@ -36,6 +36,14 @@ namespace Zen.Utilities.ExtensionMethods
             return returnString;
         }
 
+        public static string KeepOnlyBeforeCharacter(this string str, char c)
+        {
+            var split = str.Split(c);
+            var returnString = split[0];
+
+            return returnString;
+        }
+
         public static string RemoveFirstAndLastCharacters(this string str)
         {
             var returnString = str.Substring(1, str.Length - 2);

@@ -22,6 +22,15 @@ namespace Zen.Utilities
             Y = y;
         }
 
+        public PointI(string p)
+        {
+            var p2 = p.Replace("[", "");
+            var p3 = p2.Replace("]", "");
+            var split = p3.Split(';');
+            X = Convert.ToInt32(split[0]);
+            Y = Convert.ToInt32(split[1]);
+        }
+
         public static PointI Empty => new PointI(0, 0);
         public static PointI Zero => new PointI(0, 0);
 
