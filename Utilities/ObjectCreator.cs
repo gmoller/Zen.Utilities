@@ -35,42 +35,6 @@ namespace Zen.Utilities
             return methodInfo;
         }
 
-        public static Action<object, EventArgs> CreateActionDelegate(string assemblyQualifiedName, string methodName)
-        {
-            var methodInfo = GetMethod(assemblyQualifiedName, methodName);
-            if (methodInfo.IsStatic)
-            {
-                var action = (Action<object, EventArgs>)Delegate.CreateDelegate(typeof(Action<object, EventArgs>), methodInfo);
-
-                return action;
-            }
-            else
-            {
-                var instantiatedObject = CreateInstance(assemblyQualifiedName);
-                var action = (Action<object, EventArgs>)Delegate.CreateDelegate(typeof(Action<object, EventArgs>), instantiatedObject, methodInfo);
-
-                return action;
-            }
-        }
-
-        public static Func<object, string> CreateFuncDelegate(string assemblyQualifiedName, string methodName)
-        {
-            var methodInfo = GetMethod(assemblyQualifiedName, methodName);
-            if (methodInfo.IsStatic)
-            {
-                var func = (Func<object, string>)Delegate.CreateDelegate(typeof(Func<object, string>), methodInfo);
-
-                return func;
-            }
-            else
-            {
-                var instantiatedObject = CreateInstance(assemblyQualifiedName);
-                var func = (Func<object, string>)Delegate.CreateDelegate(typeof(Func<object, string>), instantiatedObject, methodInfo);
-
-                return func;
-            }
-        }
-
         public static CallingType GetCallerType(int level)
         {
             var stackTrace = new StackTrace();
