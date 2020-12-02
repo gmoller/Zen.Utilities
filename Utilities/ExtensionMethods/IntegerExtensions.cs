@@ -2,11 +2,9 @@
 {
     public static class IntegerExtensions
     {
-        public static int ResetBit(this int i, int bitNumber)
+        public static bool IsBitSet(this int i, int bitNumber)
         {
-            i &= byte.MaxValue ^ (1 << bitNumber);
-
-            return i;
+            return (i & (1 << bitNumber)) != 0;
         }
 
         public static int SetBit(this int i, int bitNumber)
@@ -16,9 +14,21 @@
             return i;
         }
 
+        public static int ResetBit(this int i, int bitNumber)
+        {
+            i &= byte.MaxValue ^ (1 << bitNumber);
+
+            return i;
+        }
+
         public static bool IsEven(this int i)
         {
-            return (i % 2) == 0;
+            return i % 2 == 0;
+        }
+
+        public static bool IsOdd(this int i)
+        {
+            return i % 2 != 0;
         }
     }
 }
