@@ -14,9 +14,16 @@
             return returnByte;
         }
 
-        public static byte ResetBit(this byte b, int bitNumber)
+        public static byte UnsetBit(this byte b, int bitNumber)
         {
             var returnByte = (byte)(b & ~(1 << bitNumber));
+
+            return returnByte;
+        }
+
+        public static byte ToggleBit(this byte b, int bitNumber)
+        {
+            var returnByte = (byte)(b ^ (1 << bitNumber));
 
             return returnByte;
         }

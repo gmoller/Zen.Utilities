@@ -14,11 +14,18 @@
             return i;
         }
 
-        public static int ResetBit(this int i, int bitNumber)
+        public static int UnsetBit(this int i, int bitNumber)
         {
             i &= byte.MaxValue ^ (1 << bitNumber);
 
             return i;
+        }
+
+        public static int ToggleBit(this int i, int bitNumber)
+        {
+            var returnByte = i ^ (1 << bitNumber);
+
+            return returnByte;
         }
 
         public static bool IsEven(this int i)

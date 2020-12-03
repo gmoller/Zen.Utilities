@@ -205,10 +205,10 @@ namespace Zen.UtilitiesTests
         }
 
         [Test]
-        public void Test_ResetBit()
+        public void Test_UnsetBit()
         {
             byte test = 1;
-            test = test.ResetBit(0);
+            test = test.UnsetBit(0);
             var setBits = GetSetBits(test);
 
             Assert.AreEqual(0, test);
@@ -223,8 +223,95 @@ namespace Zen.UtilitiesTests
 
 
             test = 3;
-            test = test.ResetBit(0);
-            test = test.ResetBit(1);
+            test = test.UnsetBit(0);
+            test = test.UnsetBit(1);
+            setBits = GetSetBits(test);
+
+            Assert.AreEqual(0, test);
+            Assert.AreEqual(false, setBits[0]);
+            Assert.AreEqual(false, setBits[1]);
+            Assert.AreEqual(false, setBits[2]);
+            Assert.AreEqual(false, setBits[3]);
+            Assert.AreEqual(false, setBits[4]);
+            Assert.AreEqual(false, setBits[5]);
+            Assert.AreEqual(false, setBits[6]);
+            Assert.AreEqual(false, setBits[7]);
+        }
+
+        [Test]
+        public void Test_ToggleBit()
+        {
+            byte test = 0;
+            test = test.ToggleBit(0);
+            var setBits = GetSetBits(test);
+
+            Assert.AreEqual(1, test);
+            Assert.AreEqual(true, setBits[0]);
+            Assert.AreEqual(false, setBits[1]);
+            Assert.AreEqual(false, setBits[2]);
+            Assert.AreEqual(false, setBits[3]);
+            Assert.AreEqual(false, setBits[4]);
+            Assert.AreEqual(false, setBits[5]);
+            Assert.AreEqual(false, setBits[6]);
+            Assert.AreEqual(false, setBits[7]);
+
+            test = test.ToggleBit(0);
+            setBits = GetSetBits(test);
+
+            Assert.AreEqual(0, test);
+            Assert.AreEqual(false, setBits[0]);
+            Assert.AreEqual(false, setBits[1]);
+            Assert.AreEqual(false, setBits[2]);
+            Assert.AreEqual(false, setBits[3]);
+            Assert.AreEqual(false, setBits[4]);
+            Assert.AreEqual(false, setBits[5]);
+            Assert.AreEqual(false, setBits[6]);
+            Assert.AreEqual(false, setBits[7]);
+
+
+            test = 0;
+            test = test.ToggleBit(1);
+            setBits = GetSetBits(test);
+
+            Assert.AreEqual(2, test);
+            Assert.AreEqual(false, setBits[0]);
+            Assert.AreEqual(true, setBits[1]);
+            Assert.AreEqual(false, setBits[2]);
+            Assert.AreEqual(false, setBits[3]);
+            Assert.AreEqual(false, setBits[4]);
+            Assert.AreEqual(false, setBits[5]);
+            Assert.AreEqual(false, setBits[6]);
+            Assert.AreEqual(false, setBits[7]);
+
+            test = test.ToggleBit(1);
+            setBits = GetSetBits(test);
+
+            Assert.AreEqual(0, test);
+            Assert.AreEqual(false, setBits[0]);
+            Assert.AreEqual(false, setBits[1]);
+            Assert.AreEqual(false, setBits[2]);
+            Assert.AreEqual(false, setBits[3]);
+            Assert.AreEqual(false, setBits[4]);
+            Assert.AreEqual(false, setBits[5]);
+            Assert.AreEqual(false, setBits[6]);
+            Assert.AreEqual(false, setBits[7]);
+
+
+            test = 0;
+            test = test.ToggleBit(7);
+            setBits = GetSetBits(test);
+
+            Assert.AreEqual(128, test);
+            Assert.AreEqual(false, setBits[0]);
+            Assert.AreEqual(false, setBits[1]);
+            Assert.AreEqual(false, setBits[2]);
+            Assert.AreEqual(false, setBits[3]);
+            Assert.AreEqual(false, setBits[4]);
+            Assert.AreEqual(false, setBits[5]);
+            Assert.AreEqual(false, setBits[6]);
+            Assert.AreEqual(true, setBits[7]);
+
+            test = test.ToggleBit(7);
             setBits = GetSetBits(test);
 
             Assert.AreEqual(0, test);
