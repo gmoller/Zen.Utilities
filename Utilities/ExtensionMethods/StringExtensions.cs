@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Zen.Utilities.ExtensionMethods
 {
@@ -69,6 +70,13 @@ namespace Zen.Utilities.ExtensionMethods
             }
 
             return false;
+        }
+
+        public static string GetFirstCharacters(this string str, int i)
+        {
+            var returnString = new string(str.Take(i).ToArray());
+
+            return returnString;
         }
 
         public static IEnumerable<string> SplitToLines(this string input)
