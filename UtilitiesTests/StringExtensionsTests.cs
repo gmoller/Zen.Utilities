@@ -28,5 +28,23 @@ namespace Zen.UtilitiesTests
 
             Assert.AreEqual("Hello there!", test2);
         }
+
+        [Test]
+        public void Test_RemoveLastCharacter()
+        {
+            var test = "";
+            var test2 = test.RemoveLastCharacter();
+
+            Assert.AreEqual("", test2);
+
+            test = "Hello there!";
+            test2 = test.RemoveLastCharacter();
+
+            Assert.AreEqual("Hello there", test2);
+
+            test2 = test2.RemoveLastCharacter();
+
+            Assert.AreEqual("Hello ther", test2);
+        }
     }
 }

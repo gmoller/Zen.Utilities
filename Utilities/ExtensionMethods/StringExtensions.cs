@@ -52,6 +52,15 @@ namespace Zen.Utilities.ExtensionMethods
             return returnString;
         }
 
+        public static string RemoveLastCharacter(this string str)
+        {
+            if (str.Length == 0) return str;
+
+            var returnString = str.Remove(str.Length - 1);
+
+            return returnString;
+        }
+
         public static bool StartsAndEndsWith(this string str, char start, char end)
         {
             if (str.StartsWith(start) && str.EndsWith(end))
