@@ -29,6 +29,43 @@ namespace Zen.Utilities.ExtensionMethods
             return returnString;
         }
 
+        public static string GetTextBetweenIndexes(this string str, int index1, int index2, bool inclusive = false)
+        {
+            if (inclusive)
+            {
+                var returnString = str.Substring(index1, index2 - index1 + 1);
+
+                return returnString;
+            }
+            else
+            {
+                // not inclusive
+                var returnString = str.Substring(index1 + 1, index2 - index1 - 1);
+
+                return returnString;
+            }
+        }
+
+        public static string GetTextBetweenCharacters(this string str, char c, bool inclusive = false)
+        {
+            if (inclusive)
+            {
+                var index1 = str.IndexOf(c, 0);
+                var index2 = str.IndexOf(c, index1 + 1);
+                var returnString = str.GetTextBetweenIndexes(index1, index2, true);
+
+                return returnString;
+            }
+            else
+            {
+                var index1 = str.IndexOf(c, 0);
+                var index2 = str.IndexOf(c, index1 + 1);
+                var returnString = str.GetTextBetweenIndexes(index1, index2);
+
+                return returnString;
+            }
+        }
+
         public static string KeepOnlyAfterCharacter(this string str, char c)
         {
             var split = str.Split(c);
@@ -71,14 +108,22 @@ namespace Zen.Utilities.ExtensionMethods
             return false;
         }
 
-        public static bool StartsAndEndsWith(this string str, char character)
+        public static bool StartsAndEndsWith(this string str, char c)
         {
-            if (str.StartsWith(character) && str.EndsWith(character))
+            if (str.StartsWith(c) && str.EndsWith(c))
             {
                 return true;
             }
 
             return false;
+        }
+
+        public static bool ContainsTwoCharactersOf(this string str, char c)
+        {
+            var count = str.Count(x => x == c);
+            var result = count == 2;
+
+            return result;
         }
 
         public static string GetFirstCharacters(this string str, int i)
