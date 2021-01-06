@@ -4,16 +4,13 @@ using Zen.Utilities.ExtensionMethods;
 
 namespace Zen.Utilities
 {
-    /// <summary>
-    /// This struct is immutable.
-    /// </summary>
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + ",nq}")]
     [Serializable]
-    public readonly struct PointI
+    public struct PointI
     {
         #region State
-        public int X { get; }
-        public int Y { get; }
+        public int X { get; set; }
+        public int Y { get; set; }
         #endregion
 
         public PointI(int x, int y)

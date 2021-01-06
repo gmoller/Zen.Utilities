@@ -60,6 +60,40 @@ namespace Zen.Utilities
             Items.Add(item);
         }
 
+        public void Remove(int id)
+        {
+            var index = FindIndexOfId(id);
+
+            Items.RemoveAt(index);
+        }
+
+        public T GetById(int id)
+        {
+            foreach (var item in Items)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+
+            throw new Exception($"Id [{id}] not found.");
+        }
+
+        private int FindIndexOfId(int id)
+        {
+            for (var i = 0; i < Items.Count; i++)
+            {
+                var item = Items[i];
+                if (item.Id == id)
+                {
+                    return i;
+                }
+            }
+
+            throw new Exception($"Id [{id}] not found.");
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             foreach (var item in Items)
@@ -78,6 +112,6 @@ namespace Zen.Utilities
             return DebuggerDisplay;
         }
 
-        private string DebuggerDisplay => $"{{Count={Items.Count}}}";
+        private string DebuggerDisplay => $"{{{typeof(T).Name} List: Count={Items.Count}}}";
     }
 }
