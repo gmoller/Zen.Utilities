@@ -15,9 +15,9 @@ namespace Zen.UtilitiesTests
         public void DataList_can_be_created()
         {
             var list = DataList<Foo>.Create();
-            list.Add(new Foo(1));
-            list.Add(new Foo(2));
-            list.Add(new Foo(3));
+            list.Add(new Foo(1, "One"));
+            list.Add(new Foo(2, "Two"));
+            list.Add(new Foo(3, "Three"));
 
             Assert.AreEqual(3, list.Count);
             Assert.AreEqual(1, list[0].Id);
@@ -45,9 +45,9 @@ namespace Zen.UtilitiesTests
         public void DataList_can_be_created_from_another_list()
         {
             var list1 = DataList<Foo>.Create();
-            list1.Add(new Foo(1));
-            list1.Add(new Foo(2));
-            list1.Add(new Foo(3));
+            list1.Add(new Foo(1, "One"));
+            list1.Add(new Foo(2, "Two"));
+            list1.Add(new Foo(3, "Three"));
 
             var list2 = DataList<Foo>.Create(list1);
 
@@ -76,13 +76,30 @@ namespace Zen.UtilitiesTests
             }
         }
 
+        [Test]
+        public void Item_in_DataList_can_be_updated()
+        {
+            var list = DataList<Foo>.Create();
+            list.Add(new Foo(1, "One"));
+            var item1 = list.GetById(1);
+            var updatedItem = new Foo(item1.Id, "Cripes");
+
+            list.Update(updatedItem);
+            var item2 = list.GetById(1);
+
+            Assert.AreEqual("One", item1.Name);
+            Assert.AreEqual("Cripes", item2.Name);
+        }
+
         private readonly struct Foo : IIdentifiedById
         {
             public int Id { get; }
+            public string Name { get; }
 
-            public Foo(int id)
+            public Foo(int id, string name)
             {
                 Id = id;
+                Name = name;
             }
         }
     }

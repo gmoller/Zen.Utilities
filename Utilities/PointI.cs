@@ -6,7 +6,7 @@ namespace Zen.Utilities
 {
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + ",nq}")]
     [Serializable]
-    public struct PointI
+    public struct PointI : IComparable<PointI>
     {
         #region State
         public int X { get; set; }
@@ -41,6 +41,27 @@ namespace Zen.Utilities
         }
 
         #region Overrides and Overloads
+
+        public int CompareTo(PointI p)
+        {
+            if (Y < p.Y)
+            {
+                return -1;
+            }
+            if (Y > p.Y)
+            {
+                return 1;
+            }
+            if (X < p.X)
+            {
+                return -1;
+            }
+            if (X > p.X)
+            {
+                return 1;
+            }
+            return 0;
+        }
 
         public override bool Equals(object obj)
         {

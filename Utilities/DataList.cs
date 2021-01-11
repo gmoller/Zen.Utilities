@@ -55,16 +55,10 @@ namespace Zen.Utilities
             }
         }
 
+        // CRUD
         public void Add(T item)
         {
             Items.Add(item);
-        }
-
-        public void Remove(int id)
-        {
-            var index = FindIndexOfId(id);
-
-            Items.RemoveAt(index);
         }
 
         public T GetById(int id)
@@ -78,6 +72,19 @@ namespace Zen.Utilities
             }
 
             throw new Exception($"Id [{id}] not found.");
+        }
+
+        public void Update(T item)
+        {
+            var index = FindIndexOfId(item.Id);
+            Items[index] = item;
+        }
+
+        public void Remove(int id)
+        {
+            var index = FindIndexOfId(id);
+
+            Items.RemoveAt(index);
         }
 
         private int FindIndexOfId(int id)
