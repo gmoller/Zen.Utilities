@@ -91,10 +91,32 @@ namespace Zen.UtilitiesTests
             Assert.AreEqual("Cripes", item2.Name);
         }
 
-        private readonly struct Foo : IIdentifiedById
+        [Test]
+        public void Serialize_Deserialize()
         {
-            public int Id { get; }
-            public string Name { get; }
+            var list1 = DataList<Foo>.Create();
+            list1.Add(new Foo(1, "One"));
+            list1.Add(new Foo(2, "Two"));
+            list1.Add(new Foo(3, "Three"));
+
+            var json = list1.Serialize();
+            var list2 = DataList<Foo>.CreateFromJson(json);
+
+            Assert.AreEqual(3, list1.Count);
+            Assert.AreEqual(1, list1[0].Id);
+            Assert.AreEqual(2, list1[1].Id);
+            Assert.AreEqual(3, list1[2].Id);
+
+            Assert.AreEqual(3, list2.Count);
+            Assert.AreEqual(1, list2[0].Id);
+            Assert.AreEqual(2, list2[1].Id);
+            Assert.AreEqual(3, list2[2].Id);
+        }
+
+        private struct Foo : IIdentifiedById
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
 
             public Foo(int id, string name)
             {

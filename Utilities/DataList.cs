@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 
 namespace Zen.Utilities
 {
@@ -38,6 +39,14 @@ namespace Zen.Utilities
         public static DataList<T> Create(IEnumerable<T> items)
         {
             return new DataList<T>(items.ToList());
+        }
+
+        public static DataList<T> CreateFromJson(string json)
+        {
+            var deserialized = JsonSerializer.Deserialize<List<T>>(json);
+            var list = Create(deserialized);
+
+            return list;
         }
 
         public int Count => Items.Count;
@@ -85,6 +94,14 @@ namespace Zen.Utilities
             var index = FindIndexOfId(id);
 
             Items.RemoveAt(index);
+        }
+
+        public string Serialize(bool prettyPrint = false)
+        {
+            var options = new JsonSerializerOptions {WriteIndented = prettyPrint};
+            var serialized = JsonSerializer.Serialize(Items, options);
+
+            return serialized;
         }
 
         private int FindIndexOfId(int id)
